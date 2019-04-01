@@ -1,0 +1,23 @@
+[package]
+name = "hello-ping-pong"
+version = "0.1.0"
+authors = ["Abadi Kurniawan <abadi.kurniawan@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "pong"
+path = "src/pong.rs"
+
+[[bin]]
+name = "ping"
+path = "src/ping.rs"
+
+[[bin]]
+name = "pingpong"
+path = "src/pingpong.rs"
+
+[dependencies]
+actix-web = "0.7.19"
+reqwest = "0.9.12"
+serde = "1.0.89"
+failure = "0.1.5"
