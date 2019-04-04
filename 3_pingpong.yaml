@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: pingpongacr.azurecr.io/pingpong:v2
+          image: pingpongacr.azurecr.io/pingpong:v4
           ports:
             - containerPort: 8003

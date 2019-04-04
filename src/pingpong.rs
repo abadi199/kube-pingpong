@@ -29,7 +29,8 @@ impl error::ResponseError for PingPongError {
 }
 
 fn call_pong() -> Result<String, PingPongError> {
-    let resp: String = reqwest::get("http://10.0.206.143")
+    // let resp: String = reqwest::get("http://10.0.206.143")
+    let resp: String = reqwest::get("http://pong-service.default.svc.cluster.local")
         .map_err(PingPongError::PongError)?
         .text()
         .map_err(PingPongError::PongJsonError)?;
@@ -37,7 +38,8 @@ fn call_pong() -> Result<String, PingPongError> {
 }
 
 fn call_ping() -> Result<String, PingPongError> {
-    let resp: String = reqwest::get("http://10.0.246.220")
+    // let resp: String = reqwest::get("http://10.0.246.220")
+    let resp: String = reqwest::get("http://ping-service.default.svc.cluster.local")
         .map_err(PingPongError::PingError)?
         .text()
         .map_err(PingPongError::PingJsonError)?;
@@ -45,10 +47,8 @@ fn call_ping() -> Result<String, PingPongError> {
 }
 
 fn pingpong(_req: &HttpRequest) -> Result<String> {
-    // let ping: String = call_ping().unwrap_or("Ping is down".to_string());
-    // let pong = call_pong().unwrap_or("Pong is down".to_string());
-    let pong = "fake pong";
-    let ping = "fake ping";
+    let ping: String = call_ping().unwrap_or("Ping is down".to_string());
+    let pong = call_pong().unwrap_or("Pong is down".to_string());
     Ok(format!("{} -- {}", ping, pong))
 }
 
