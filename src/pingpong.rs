@@ -29,7 +29,7 @@ impl error::ResponseError for PingPongError {
 }
 
 fn call_pong() -> Result<String, PingPongError> {
-    let resp: String = reqwest::get("http://localhost:8001")
+    let resp: String = reqwest::get("http://10.0.206.143")
         .map_err(PingPongError::PongError)?
         .text()
         .map_err(PingPongError::PongJsonError)?;
@@ -37,7 +37,7 @@ fn call_pong() -> Result<String, PingPongError> {
 }
 
 fn call_ping() -> Result<String, PingPongError> {
-    let resp: String = reqwest::get("http://localhost:8000")
+    let resp: String = reqwest::get("http://10.0.246.220")
         .map_err(PingPongError::PingError)?
         .text()
         .map_err(PingPongError::PingJsonError)?;
@@ -45,9 +45,11 @@ fn call_ping() -> Result<String, PingPongError> {
 }
 
 fn pingpong(_req: &HttpRequest) -> Result<String> {
-    let ping: String = call_ping().unwrap_or("Ping is down".to_string());
-    let pong = call_pong().unwrap_or("Pong is down".to_string());
-    Ok(format!("{} & {}", ping, pong))
+    // let ping: String = call_ping().unwrap_or("Ping is down".to_string());
+    // let pong = call_pong().unwrap_or("Pong is down".to_string());
+    let pong = "fake pong";
+    let ping = "fake ping";
+    Ok(format!("{} -- {}", ping, pong))
 }
 
 fn alive(_req: &HttpRequest) -> impl Responder {

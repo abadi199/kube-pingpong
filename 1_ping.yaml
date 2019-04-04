@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ping-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ping
+    spec:
+      containers:
+        - name: ping
+          image: pingpongacr.azurecr.io/ping:v1
+          ports:
+            - containerPort: 8000

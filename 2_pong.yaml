@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pong-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pong
+    spec:
+      containers:
+        - name: pong
+          image: pingpongacr.azurecr.io/pong:v1
+          ports:
+            - containerPort: 8001

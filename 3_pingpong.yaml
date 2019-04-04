@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pingpong-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pingpong
+    spec:
+      containers:
+        - name: pingpong
+          image: pingpongacr.azurecr.io/pingpong:v2
+          ports:
+            - containerPort: 8003
